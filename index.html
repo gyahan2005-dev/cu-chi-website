@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cổng Thông Tin Huyện Củ Chi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #b22222;
+            --primary-dark: #7f1414;
+            --secondary: #f4c542;
+            --accent: #ffd95a;
+            --light: #fff7df;
+            --surface: #fffdf6;
+            --text: #2e1b12;
+            --muted: #6e4c2b;
+            --border: rgba(178, 34, 34, 0.16);
+            --shadow: 0 14px 40px rgba(110, 24, 24, 0.14);
+            --radius-xl: 28px;
+            --radius-lg: 20px;
+            --radius-md: 14px;
+            --max: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Be Vietnam Pro", sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top right, rgba(201, 135, 61, 0.14), transparent 20%),
+                linear-gradient(180deg, #f9f5ee 0%, #f5efe4 100%);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .container {
+            width: min(var(--max), calc(100% - 32px));
+            margin: 0 auto;
+        }
+
+        .topbar {
+            background: linear-gradient(90deg, var(--primary-dark), var(--primary));
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .topbar-inner {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 10px 0;
+            flex-wrap: wrap;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 250, 243, 0.88);
+            border-bottom: 1px solid rgba(48, 95, 58, 0.08);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 16px 0;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .brand-badge {
+            width: 54px;
+            height: 54px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: grid;
+            place-items: center;
+            color: #fff;
+            font-weight: 800;
+            box-shadow: var(--shadow);
+        }
+
+        .brand h1 {
+            margin: 0;
+            font-size: 18px;
+            line-height: 1.3;
+        }
+
+        .brand p {
+            margin: 2px 0 0;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .menu {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .menu a {
+            font-weight: 600;
+            color: var(--text);
+            position: relative;
+        }
+
+        .menu a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: 0.25s ease;
+        }
+
+        .menu a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            padding: 42px 0 30px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 28px;
+            align-items: stretch;
+        }
+
+        .hero-content {
+            background: linear-gradient(140deg, #b22222, #7f1414);
+            color: #fff;
+            border-radius: var(--radius-xl);
+            padding: 42px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content::before {
+            content: "";
+            position: absolute;
+            inset: auto -60px -60px auto;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.12);
+            padding: 10px 14px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+
+        .hero h2 {
+            font-size: clamp(32px, 5vw, 56px);
+            line-height: 1.1;
+            margin: 0 0 14px;
+        }
+
+        .hero p {
+            font-size: 17px;
+            line-height: 1.75;
+            color: rgba(255, 255, 255, 0.9);
+            margin: 0 0 28px;
+            max-width: 60ch;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 20px;
+            border-radius: 14px;
+            border: 1px solid transparent;
+            font-weight: 700;
+            transition: 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: #fff;
+            color: var(--primary-dark);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
+        }
+
+        .btn-secondary {
+            border-color: rgba(255, 255, 255, 0.24);
+            color: #fff;
+            background: transparent;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .hero-side {
+            display: grid;
+            gap: 18px;
+        }
+
+        .hero-image-card,
+        .stat-card,
+        .section-card,
+        .news-card,
+        .link-card,
+        .info-card,
+        .gallery-card,
+        .footer-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow);
+        }
+
+        .hero-image-card {
+            overflow: hidden;
+            min-height: 340px;
+            position: relative;
+        }
+
+        .hero-image-card .overlay {
+            position: absolute;
+            inset: auto 20px 20px 20px;
+            background: rgba(255, 255, 255, 0.92);
+            padding: 16px 18px;
+            border-radius: 18px;
+            backdrop-filter: blur(8px);
+        }
+
+        .overlay h3,
+        .stat-card h3,
+        .section-title h3 {
+            margin: 0 0 8px;
+        }
+
+        .overlay p,
+        .stat-card p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-top: 22px;
+        }
+
+        .stat-card {
+            padding: 20px;
+            border-radius: 20px;
+        }
+
+        .stat-number {
+            font-size: 30px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        section {
+            padding: 20px 0 10px;
+        }
+
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 16px;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+        }
+
+        .section-heading h3 {
+            margin: 0;
+            font-size: clamp(24px, 3vw, 34px);
+        }
+
+        .section-heading p {
+            margin: 8px 0 0;
+            color: var(--muted);
+            max-width: 70ch;
+            line-height: 1.7;
+        }
+
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .link-card {
+            padding: 22px;
+            transition: 0.25s ease;
+            border-radius: 24px;
+        }
+
+        .link-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(156, 107, 63, 0.32);
+        }
+
+        .link-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            display: grid;
+            place-items: center;
+            background: rgba(48, 95, 58, 0.08);
+            color: var(--primary);
+            font-size: 24px;
+            margin-bottom: 14px;
+        }
+
+        .link-card h4 {
+            margin: 0 0 10px;
+            font-size: 18px;
+        }
+
+        .link-card p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 24px;
+            align-items: start;
+        }
+
+        .news-list {
+            display: grid;
+            gap: 18px;
+        }
+
+        .news-card {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            overflow: hidden;
+        }
+
+        .news-content {
+            padding: 22px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(201, 135, 61, 0.14);
+            color: var(--secondary);
+            padding: 7px 12px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .news-content h4 {
+            margin: 0 0 10px;
+            font-size: 22px;
+            line-height: 1.35;
+        }
+
+        .news-content p {
+            margin: 0 0 16px;
+            color: var(--muted);
+            line-height: 1.75;
+        }
+
+        .meta {
+            display: flex;
+            gap: 16px;
+            color: var(--muted);
+            font-size: 14px;
+            flex-wrap: wrap;
+        }
+
+        .sidebar {
+            display: grid;
+            gap: 18px;
+        }
+
+        .section-card {
+            padding: 22px;
+        }
+
+        .section-card h4 {
+            margin: 0 0 14px;
+            font-size: 20px;
+        }
+
+        .bullet-list {
+            display: grid;
+            gap: 12px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .bullet-list li {
+            padding: 14px 16px;
+            border-radius: 16px;
+            background: #fff;
+            border: 1px solid rgba(48, 95, 58, 0.08);
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 0.95fr 1.05fr;
+            gap: 24px;
+            align-items: stretch;
+        }
+
+        .gallery-card {
+            overflow: hidden;
+            min-height: 420px;
+            position: relative;
+        }
+
+        .gallery-badge {
+            position: absolute;
+            top: 18px;
+            left: 18px;
+            background: rgba(33, 70, 42, 0.88);
+            color: #fff;
+            padding: 10px 14px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 18px;
+        }
+
+        .info-card {
+            padding: 18px;
+            border-radius: 22px;
+        }
+
+        .info-card h5 {
+            margin: 0 0 8px;
+            font-size: 17px;
+        }
+
+        .info-card p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        footer {
+            padding: 32px 0 48px;
+        }
+
+        .footer-card {
+            padding: 26px;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .footer-card h4 {
+            margin: 0 0 10px;
+            font-size: 24px;
+        }
+
+        .footer-card p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        .footer-actions {
+            display: flex;
+            gap: 14px;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 1080px) {
+
+            .hero-grid,
+            .content-grid,
+            .about-grid,
+            .footer-card {
+                grid-template-columns: 1fr;
+            }
+
+            .quick-links {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 760px) {
+            .menu {
+                display: none;
+            }
+
+            .hero-content {
+                padding: 28px;
+            }
+
+            .news-card {
+                grid-template-columns: 1fr;
+            }
+
+            .stats,
+            .feature-grid,
+            .quick-links {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-actions {
+                justify-content: flex-start;
+            }
+        }
+
+        .news-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 40px rgba(122, 26, 26, 0.18);
+        }
+
+        .news-card img {
+            transition: transform 0.4s ease;
+        }
+
+        .news-card:hover img {
+            transform: scale(1.06);
+        }
+
+        .news-content {
+            transition: background 0.3s ease;
+        }
+
+        .news-card:hover .news-content {
+            background: #fffaf3;
+        }
+
+        /* ===== ACCORDION MƯỢT ===== */
+        .accordion {
+            display: grid;
+            gap: 14px;
+        }
+
+        .accordion-btn {
+            width: 100%;
+            text-align: left;
+            padding: 18px 20px;
+            border-radius: 18px;
+            background: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.25s;
+            position: relative;
+        }
+
+        /* hover */
+        .accordion-btn:hover {
+            background: #fff7ef;
+            color: #b22222;
+        }
+
+        /* mũi tên */
+        .accordion-btn::after {
+            content: "▾";
+            position: absolute;
+            right: 18px;
+            transition: transform 0.3s ease;
+        }
+
+        /* xoay mũi tên khi mở */
+        .accordion-btn.active::after {
+            transform: rotate(180deg);
+        }
+
+        /* nội dung */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            background: #fffdf8;
+            border-radius: 0 0 18px 18px;
+            padding: 0 18px;
+        }
+
+        /* khi mở */
+        .accordion-content.open {
+            padding: 16px 18px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="topbar">
+        <div class="container topbar-inner">
+            <div>CỔNG THÔNG TIN ĐIỆN TỬ HUYỆN CỦ CHI</div>
+            <div>Kết nối chính quyền - người dân - doanh nghiệp</div>
+        </div>
+    </div>
+
+    <header>
+        <div class="container nav">
+            <div class="brand">
+                <div class="brand-badge"> <img src="logo.png" alt="logo Củ Chi"></div>
+                <div>
+                    <h1>Huyện Củ Chi</h1>
+                    <p>Đất thép thành đồng • Phát triển bền vững • Hướng tới tương lai</p>
+                </div>
+                <nav class="menu">
+                    <a href="#gioi-thieu">Giới thiệu</a>
+                    <a href="#dich-vu">Dịch vụ công</a>
+                    <a href="#tin-tuc">Tin tức</a>
+                    <a href="#diem-den">Điểm đến</a>
+                    <a href="#lien-he">Liên hệ</a>
+                </nav>
+            </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <div class="eyebrow">🏛️ Cổng thông tin điện tử chính thức Huyện Củ Chi</div>
+                    <h2>Cổng Thông Tin Điện Tử Huyện Củ Chi</h2>
+                    <p>
+                        Cổng Thông Tin Điện Tử Huyện Củ Chi là kênh cung cấp thông tin chính thức về hoạt động quản lý,
+                        điều hành của chính quyền địa phương, đồng thời hỗ trợ người dân và doanh nghiệp tiếp cận các
+                        dịch vụ hành chính công một cách nhanh chóng, thuận tiện và hiệu quả.
+                    </p>
+                    <div class="hero-actions">
+                        <a class="btn btn-primary" href="#tin-tuc">Xem tin nổi bật</a>
+                        <a class="btn btn-secondary" href="#dich-vu">Tra cứu dịch vụ công</a>
+                    </div>
+
+                    <div class="stats">
+                        <div class="stat-card">
+                            <div class="stat-number">24/7</div>
+                            <h3>Dịch vụ trực tuyến</h3>
+                            <p>
+                                Cung cấp dịch vụ hành chính công trực tuyến liên tục, giúp người dân và doanh nghiệp
+                                thực hiện thủ tục mọi lúc, mọi nơi.
+                            </p>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-number">12+</div>
+                            <h3>Lĩnh vực phục vụ</h3>
+                            <p>
+                                Triển khai đa dạng các lĩnh vực hành chính, đáp ứng nhu cầu giải quyết thủ tục của người
+                                dân và doanh nghiệp.
+                            </p>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-number">100%</div>
+                            <h3>Tiếp cận thuận tiện</h3>
+                            <p>
+                                Hệ thống hỗ trợ truy cập trên nhiều thiết bị, đảm bảo sử dụng dễ dàng, nhanh chóng và
+                                hiệu quả.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-side">
+                    <div class="hero-image-card">
+                        <img src="https://tse1.mm.bing.net/th/id/OIP.oDLWsA03FFBl1Q4D1YIuVAHaNM?rs=1&pid=ImgDetMain&o=7&rm=3"
+                            alt="Không gian đồng quê xanh mát" />
+                        <div class="overlay">
+                            <h3>Định hướng phát triển</h3>
+                            <p>
+                                Huyện Củ Chi tập trung phát triển kinh tế - xã hội bền vững, đẩy mạnh chuyển đổi số
+                                trong quản lý hành chính, nâng cao chất lượng dịch vụ công và xây dựng nông thôn mới
+                                hiện đại, văn minh.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="dich-vu">
+            <div class="container">
+                <div class="section-heading">
+                    <div>
+                        <h3>Tiện ích hành chính</h3>
+                        <p>
+                            Cung cấp các dịch vụ hành chính công trực tuyến, hỗ trợ người dân và doanh nghiệp thực hiện
+                            thủ tục nhanh chóng, thuận tiện.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="quick-links">
+                    <a class="link-card" href="#">
+                        <div class="link-icon">🏛️</div>
+                        <h4>Dịch vụ công</h4>
+                        <p>Nộp hồ sơ, tra cứu thủ tục hành chính, theo dõi kết quả trực tuyến.</p>
+                    </a>
+                    <a class="link-card" href="#">
+                        <div class="link-icon">📢</div>
+                        <h4>Thông báo</h4>
+                        <p>Cập nhật lịch tiếp dân, công văn, thông tin điều hành và chỉ đạo.</p>
+                    </a>
+                    <a class="link-card" href="#">
+                        <div class="link-icon">🗺️</div>
+                        <h4>Bản đồ hành chính</h4>
+                        <p>Tổng hợp vị trí xã, thị trấn, cơ quan công quyền và các điểm công cộng.</p>
+                    </a>
+                    <a class="link-card" href="#">
+                        <div class="link-icon">📷</div>
+                        <h4>Du lịch - Văn hóa</h4>
+                        <p>Giới thiệu địa đạo Củ Chi, làng nghề, nông nghiệp sinh thái và điểm tham quan.</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="tin-tuc">
+            <div class="container content-grid">
+                <div>
+                    <div class="section-heading">
+                        <div>
+                            <h3>Tin tức - Chỉ đạo điều hành</h3>
+                            <p>Cập nhật các thông tin mới nhất về hoạt động chỉ đạo, điều hành của chính quyền địa
+                                phương và tình hình phát triển kinh tế - xã hội trên địa bàn huyện.
+                                .</p>
+                        </div>
+                    </div>
+
+                    <div class="news-list">
+
+                        <article class="news-card">
+                            <div>
+                                <img src="https://ttthlak.gov.vn/media/2020/05/IMG_20200527_124131.jpg"
+                                    alt="Hội nghị Ban Chấp hành Đảng bộ huyện Củ Chi lần thứ 20" />
+                            </div>
+                            <div class="news-content">
+                                <span class="tag">Tin điều hành</span>
+                                <h4>Hội nghị Ban Chấp hành Đảng bộ huyện Củ Chi lần thứ 20</h4>
+                                <p>
+                                    Hội nghị đánh giá tình hình phát triển kinh tế - xã hội và đề ra phương hướng, nhiệm
+                                    vụ trọng tâm trong thời gian tới.
+                                </p>
+                                <div class="meta">
+                                    <span>📅 10/10/2024</span>
+                                    <span>👁️ 1.250 lượt xem</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="news-card">
+                            <div>
+                                <img
+                                    src="https://tapchidongnama.vn/wp-content/uploads/2025/02/cdn1z.reatimes.vn-652356615132086272-2025-2-8-_huyen-cu-chi-sap-thanh-do-thi-kieu-moi2-17390263437641742181694-1920x1441.jpg" />
+                            </div>
+                            <div class="news-content">
+                                <span class="tag">Kinh tế - Xã hội</span>
+                                <h4>Huyện Củ Chi phát triển theo hướng đô thị vệ tinh</h4>
+                                <p>
+                                    Địa phương tập trung phát triển hạ tầng, nâng cao chất lượng sống và thúc đẩy công
+                                    nghiệp - dịch vụ.
+                                </p>
+                                <div class="meta">
+                                    <span>📅 12/10/2024</span>
+                                    <span>👁️ 980 lượt xem</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="news-card">
+                            <div>
+                                <img
+                                    src="https://danviet.ex-cdn.com/files/f1/296231569849192448/2022/11/10/img7443-16680698301682091382082-166807051547549880426.jpeg" />
+                            </div>
+                            <div class="news-content">
+                                <span class="tag">Nông nghiệp</span>
+                                <h4>Đẩy mạnh phát triển nông nghiệp công nghệ cao</h4>
+                                <p>
+                                    Huyện Củ Chi chú trọng phát triển sản phẩm OCOP và nâng cao giá trị nông sản địa
+                                    phương.
+                                </p>
+                                <div class="meta">
+                                    <span>📅 11/10/2024</span>
+                                    <span>👁️ 870 lượt xem</span>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="news-card">
+                            <div>
+                                <img
+                                    src="https://bcp.cdnchinhphu.vn/thumb_w/777/334894974524682240/2025/12/20/21ed4db2-a292-4576-97ec-93fc5dbb7262-17662408502321342357307.jpg" />
+                            </div>
+                            <div class="news-content">
+                                <span class="tag">Chuyển đổi số</span>
+                                <h4>Đẩy mạnh chuyển đổi số trong cải cách hành chính</h4>
+                                <p>
+                                    Ứng dụng công nghệ thông tin giúp nâng cao hiệu quả phục vụ người dân và doanh
+                                    nghiệp.
+                                </p>
+                                <div class="meta">
+                                    <span>📅 09/10/2024</span>
+                                    <span>👁️ 1.100 lượt xem</span>
+                                </div>
+                            </div>
+                        </article>
+
+                    </div>
+                </div>
+
+                <aside class="sidebar">
+                    <div class="section-card">
+                        <h4>Danh mục tiêu biểu</h4>
+
+                        <div class="accordion">
+                            <button class="accordion-btn">Giới thiệu chung về huyện</button>
+                            <div class="accordion-content">
+                                <p>
+                                    Huyện Củ Chi là địa phương giàu truyền thống cách mạng, nổi bật với địa đạo Củ Chi -
+                                    di tích lịch sử đặc biệt gắn với tinh thần “đất thép thành đồng”.
+                                    Hiện nay, huyện đang phát triển theo hướng đô thị hóa gắn với nông nghiệp công nghệ
+                                    cao, công nghiệp và dịch vụ.
+                                </p>
+                            </div>
+
+                            <button class="accordion-btn">Văn bản chỉ đạo điều hành</button>
+                            <div class="accordion-content">
+                                <p>
+                                    Cập nhật các văn bản chỉ đạo, thông báo, kế hoạch công tác và nội dung điều hành của
+                                    Ủy ban nhân dân huyện Củ Chi,
+                                    phục vụ công tác quản lý nhà nước và tra cứu thông tin hành chính.
+                                </p>
+                            </div>
+
+                            <button class="accordion-btn">Lịch công tác tuần</button>
+                            <div class="accordion-content">
+                                <p>
+                                    Công bố lịch làm việc, hội nghị, chương trình kiểm tra, họp giao ban và các hoạt
+                                    động trọng tâm của lãnh đạo huyện trong tuần,
+                                    giúp người dân và cơ quan, đơn vị thuận tiện theo dõi.
+                                </p>
+                            </div>
+
+                            <button class="accordion-btn">Thủ tục hành chính</button>
+                            <div class="accordion-content">
+                                <p>
+                                    Cung cấp thông tin tra cứu hồ sơ, biểu mẫu, quy trình thực hiện và các dịch vụ công
+                                    trực tuyến thuộc thẩm quyền giải quyết của địa phương,
+                                    hỗ trợ người dân và doanh nghiệp thực hiện thủ tục nhanh chóng.
+                                </p>
+                            </div>
+
+                            <button class="accordion-btn">Hỏi đáp - phản ánh kiến nghị</button>
+                            <div class="accordion-content">
+                                <p>
+                                    Tiếp nhận câu hỏi, phản ánh và kiến nghị của người dân, doanh nghiệp liên quan đến
+                                    hoạt động quản lý nhà nước,
+                                    cải cách hành chính và chất lượng phục vụ của các cơ quan, đơn vị trên địa bàn
+                                    huyện.
+                                </p>
+                            </div>
+
+                            <button class="accordion-btn">Quy hoạch - đầu tư - môi trường</button>
+                            <div class="accordion-content">
+                                <p>
+                                    Cập nhật thông tin về quy hoạch sử dụng đất, định hướng phát triển hạ tầng, thu hút
+                                    đầu tư, bảo vệ môi trường và các chương trình phát triển bền vững trên địa bàn huyện
+                                    Củ Chi.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-card">
+                        <h4>Thông tin địa phương</h4>
+                        <p>
+                            Huyện Củ Chi là vùng đất giàu truyền thống cách mạng, nổi bật với địa đạo Củ Chi – biểu
+                            tượng của ý chí kiên cường và tinh thần “đất thép thành đồng”. Hiện nay, huyện đang phát
+                            triển mạnh mẽ theo hướng đô thị hóa gắn với nông nghiệp công nghệ cao và du lịch sinh thái.
+                        </p>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section id="gioi-thieu">
+            <div class="container about-grid">
+                <div class="gallery-card">
+                    <span class="gallery-badge">Bản sắc địa phương</span>
+                    <img src="https://imagevietnam.vnanet.vn/Upload/2021/4/13/13042021095552107-Cu-Chi_3_resize.jpg"
+                        alt="Phong cảnh thiên nhiên gợi cảm giác bình yên" />
+                </div>
+
+                <div class="section-card">
+                    <div class="section-heading" style="margin-bottom: 8px;">
+                        <div>
+                            <h3>Củ Chi - bản lĩnh cách mạng, phát triển hiện đại</h3>
+                            <p>Củ Chi là vùng đất giàu truyền thống cách mạng, nổi bật với Địa đạo Củ Chi - biểu tượng
+                                của ý chí kiên cường và tinh thần "đất thép thành đồng". Ngày nay, huyện đang phát triển
+                                mạnh mẽ theo hướng đô thị hóa gắn với nông nghiệp công nghệ và du lịch sinh thái.</p>
+                        </div>
+                    </div>
+
+                    <p style="color: var(--muted); line-height: 1.85; margin: 0;">
+                        Bạn có thể dùng khối này để giới thiệu khái quát về vị trí, truyền thống lịch sử, định hướng
+                        kinh tế - xã hội,
+                        thế mạnh nông nghiệp, du lịch, giáo dục và các giá trị cộng đồng của huyện Củ Chi.
+                    </p>
+
+                    <div class="feature-grid" id="diem-den">
+                        <div class="info-card">
+                            <h5>Địa đạo Củ Chi</h5>
+                            <p>Di tích lịch sử nổi tiếng, biểu tượng của tinh thần chiến đấu và kiên cường.</p>
+                        </div>
+                        <div class="info-card">
+                            <h5>Nông nghiệp công nghệ cao</h5>
+                            <p>Phát triển các mô hình sản xuất hiện đại, bền vững và hiệu quả.</p>
+                        </div>
+                        <div class="info-card">
+                            <h5>Hoạt động cộng đồng</h5>
+                            <p>Đẩy mạnh xây dựng đười sống văn hóa, gắn kết công đồng địa phương.</p>
+                        </div>
+                        <div class="info-card">
+                            <h5>Du lịch sinh thái</h5>
+                            <p>Khai thác tiềm năng du lịch xanh gắn với trải nghiệm nông thông.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="lien-he">
+        <div class="container">
+            <div class="footer-card">
+                <div>
+                    <h4>Thông tin liên hệ</h4>
+                    <p>
+                        Ủy ban nhân dân huyện Củ Chi<br>
+                        Địa chỉ: 77, Tỉnh Lộ 8, Khu phố 7, Thị trấn Củ Chi huyện Củ Chi<br>
+                        Điện thoại: 028.38920224
+                    </p>
+                </div>
+                <div class="footer-actions">
+                    <a class="btn btn-primary" href="https://forms.gle/FijjTTMM3utMVk3w9">Gửi phản ánh</a>
+                    <a class="btn" style="background: rgba(48,95,58,0.08); color: var(--primary);"
+                        href="https://www.google.com/maps/place/Địa+đạo+Củ+Chi/@11.1414,106.4622,15z" target="_blank">
+                        Xem bản đồ
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        const buttons = document.querySelectorAll(".accordion-btn");
+
+        buttons.forEach((btn) => {
+            btn.addEventListener("click", () => {
+                const content = btn.nextElementSibling;
+
+                btn.classList.toggle("active");
+
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                    content.classList.remove("open");
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                    content.classList.add("open");
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
